@@ -4,9 +4,9 @@
 
     <div class="col" >
         <button @click="$emit('ordenAlfabetico')" class="col-3 btn btn-success border-dark mb-2">Orden alfabetico</button>
-        <button @click="$emit('ordenFecha')" class="col-3 btn btn-success border-dark mb-2">Ordenar por fecha</button>
-        <button @click="$emit('ordenImporte')" class="col-3 btn btn-success border-dark mb-2">Ordenar por importe</button>
-        <button @click="$emit('reinicio')" class="col-3 btn btn-success border-dark mb-2">Reiniciar presupuestos</button>
+        <button @click="$emit('ordenFecha')" class="col-3 btn btn-success border-dark mb-2">Ordenar fecha</button>
+        <button @click="$emit('ordenImporte')" class="col-3 btn btn-success border-dark mb-2">Ordenar importe</button>
+        <button @click="$emit('reinicio')" class="col-3 btn btn-success border-dark mb-2">Reiniciar orden</button>
         
         
 
