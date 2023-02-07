@@ -98,8 +98,6 @@ let idiomes = ref(1);
 
 let final = ref(0);
 
-const jobs = [];
-
 let precio = ref(0);
 
 let suma = ref(0);
@@ -158,6 +156,7 @@ const total = (e) => {
 
     if(paginaWeb.checked == false && e == 500){
         precio.value = precio.value - 500;
+        final.value = 0
     }
 
 
@@ -178,7 +177,7 @@ const total = (e) => {
         precio.value = precio.value - 200;
     } 
 
-    suma.value = precio.value
+    suma.value = precio.value + final.value;
     
 }
 
@@ -210,18 +209,20 @@ const handleSubmit = () => {
         alert('Debes seleccionar al menos un servicio')
     } else {
         listaPresupuestos.push(obj);
+
+        presupuesto = '';
+        cliente = '';
+        paginaWeb.checked = false;
+        SEO.checked = false;
+        Ads.checked = false;
+        showPanell.value = false;
+        suma.value = 0;
+        final.value = 0;
+        precio.value = 0;
+        pagines.value = 0;
+        idiomes.value = 0;
     }
-    presupuesto = '';
-    cliente = '';
-    paginaWeb.checked = false;
-    SEO.checked = false;
-    Ads.checked = false;
-    showPanell.value = false;
-    suma.value = 0;
-    final.value = 0;
-    precio.value = 0;
-    pagines.value = 0;
-    idiomes.value = 0;
+    
 
 }
 
@@ -253,10 +254,9 @@ const checkValue = () => {
     
     webValue = paginaWeb.checked;
     seoValue = SEO.checked;
-    adsValue = Ads.checked
+    adsValue = Ads.checked;
 
     router.replace({path: '/home', query:{Nombre: presupuesto, Cliente: cliente, paginaWeb: webValue, SEO: seoValue, Ads: adsValue}})
-    
 }
 
 let array = reactive([])
@@ -270,7 +270,6 @@ watch(buscar, (newVal, oldVal) => {
     for (let i = 0; i < listaPresupuestos.length; i++) {
         if (listaPresupuestos[i].Presupuesto.includes(buscar.value) && buscar.value !== '' || listaPresupuestos[i].Cliente.includes(buscar.value) && buscar.value !== '') {
             let map = listaPresupuestos.map(n => n)
-            let sort = map.sort((a, b) => a.Presupuesto.localeCompare(b.Presupuesto));
             array.push(map[i])
         }
     }
